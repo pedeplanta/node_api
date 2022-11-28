@@ -21,7 +21,14 @@ exports.post = async (req, res, next) => {
             name: req.body.name,
             email: req.body.email,
             password: md5(req.body.password + global.SALT_KEY),
-            roles: ["user"]
+            roles: [req.body.roles],
+            cpf: req.body.cpf,
+            cep: req.body.cep,
+            cep: req.body.cep,
+            address: req.body.address,
+            addressNumber: req.body.addressNumber,
+            phone: req.body.phone,
+            roles: [req.body.roles]
         });
 
         emailService.send(
@@ -71,7 +78,8 @@ exports.authenticate = async (req, res, next) => {
             token: token,
             data: {
                 email: customer.email,
-                name: customer.name
+                name: customer.name,
+                id: customer.id
             }
         });
     } catch (e) {
