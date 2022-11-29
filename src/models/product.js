@@ -19,10 +19,10 @@ const schema = new Schema({
         type: Number,
         required: true
     },
-    tags: [{
+    tags: {
         type: String,
         required: true
-    }],
+    },
     image: {
         type: String,
         required: true,
