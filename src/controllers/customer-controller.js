@@ -114,7 +114,9 @@ exports.refreshToken = async (req, res, next) => {
             token: token,
             data: {
                 email: customer.email,
-                name: customer.name
+                name: customer.name,
+                id: customer.id,
+                roles: customer.roles
             }
         });
     } catch (e) {
@@ -126,18 +128,23 @@ exports.refreshToken = async (req, res, next) => {
 
 
 exports.getByRoles = async(req, res, next) => {
-    if(req.params.roles === 'admin') {
+    let roleUser = `${req.params.roles}`;
+
+    if(roleUser === 'admin') {
         try {
-            const data = await repository.getByRoles(req.params.roles);
+            const data = await repository.getByRoles(roleUser);
             res.status(200).send(data);
         } catch (e) {
             res.status(500).send({
-                message: 'Falha ao processar sua requisição'
+                message: 'Falha ao processar sua requisição',
+                roleUser: roleUser
             });
         }
     } else {
         res.status(500).send({
-            message: 'Falha ao processar sua requisição'
+            message: 'Falha ao processar sua requisição',
+            erro: 'erro aqui',
+            roles: roleUser
         });
     }
 }

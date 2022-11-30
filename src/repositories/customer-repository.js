@@ -20,10 +20,10 @@ exports.getById = async(id) => {
 }
 
 exports.getByRoles = async(roles) => {
-    const res = Product
+    const res = Customer
         .find({
-            roles: roles,
-            active: true
-        }, 'title description price slug roless');
+            roles: [roles],
+        }, 'name _id');
     return res;
 }
+
