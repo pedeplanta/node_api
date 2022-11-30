@@ -123,3 +123,21 @@ exports.refreshToken = async (req, res, next) => {
         });
     }
 };
+
+
+exports.getByRoles = async(req, res, next) => {
+    if(req.params.roles === 'admin') {
+        try {
+            const data = await repository.getByRoles(req.params.roles);
+            res.status(200).send(data);
+        } catch (e) {
+            res.status(500).send({
+                message: 'Falha ao processar sua requisição'
+            });
+        }
+    } else {
+        res.status(500).send({
+            message: 'Falha ao processar sua requisição'
+        });
+    }
+}

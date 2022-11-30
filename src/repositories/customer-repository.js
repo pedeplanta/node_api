@@ -18,3 +18,12 @@ exports.getById = async(id) => {
     const res = await Customer.findById(id);
     return res;
 }
+
+exports.getByRoles = async(roles) => {
+    const res = Product
+        .find({
+            roles: roles,
+            active: true
+        }, 'title description price slug roless');
+    return res;
+}
