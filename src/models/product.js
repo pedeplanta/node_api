@@ -8,7 +8,7 @@ const schema = new Schema({
         trim: true
     },
     idSeller: {
-        type: Number,
+        type: String,
         required: true,
     },
     description: {

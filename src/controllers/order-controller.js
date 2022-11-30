@@ -20,8 +20,12 @@ exports.post = async(req, res, next) => {
 
         await repository.create({
             customer: data.id,
+            idSeller: data.idSeller,
+            idClient: data.idClient,
+            price: data.price,
             number: guid.raw().substring(0, 6),
-            items: req.body.items
+            items: req.body.items,
+            messages: data.messages
         });
         res.status(201).send({
             message: 'Pedido cadastrado com sucesso!'
@@ -36,7 +40,20 @@ exports.post = async(req, res, next) => {
 
 exports.putMessage = async(req, res, next) => {
     try {
-        repository.updateMessage(req.params.id, req.body);
+        const token = req.body.token || req.query.token || req.headers['x-access-token'];
+        const data = await authService.decodeToken(token);
+
+        let body = {
+            customer: data.id,
+            idSeller: data.idSeller,
+            idClient: data.idClient,
+            price: data.price,
+            number: guid.raw().substring(0, 6),
+            items: req.body.items,
+            messages: data.messages
+        };
+
+        repository.updateMessage(body.id, body);
         res.status(200).send({
             message: 'Pedido atualizado com sucesso!'
         });
@@ -48,8 +65,21 @@ exports.putMessage = async(req, res, next) => {
 }
 
 exports.putStatus = async(req, res, next) => {
+    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    const data = await authService.decodeToken(token);
+
+    let body = {
+        customer: data.id,
+        idSeller: data.idSeller,
+        idClient: data.idClient,
+        price: data.price,
+        number: guid.raw().substring(0, 6),
+        items: req.body.items,
+        messages: data.messages
+    };
+
     try {
-        repository.updateStatus(req.params.id, req.body);
+        repository.updateStatus(body.id, body);
         res.status(200).send({
             message: 'Pedido atualizado com sucesso!'
         });
@@ -61,8 +91,21 @@ exports.putStatus = async(req, res, next) => {
 }
 
 exports.putPrice = async(req, res, next) => {
+    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    const data = await authService.decodeToken(token);
+
+    let body = {
+        customer: data.id,
+        idSeller: data.idSeller,
+        idClient: data.idClient,
+        price: data.price,
+        number: guid.raw().substring(0, 6),
+        items: req.body.items,
+        messages: data.messages
+    };
+
     try {
-        repository.updatePrice(req.params.id, req.body);
+        repository.updatePrice(body.id, body);
         res.status(200).send({
             message: 'Pedido atualizado com sucesso!'
         });

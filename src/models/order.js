@@ -7,11 +7,11 @@ const schema = new Schema({
         ref: 'Customer'
     },
     idSaller: {
-        type: Number,
+        type: String,
         required: true
     },
     idClient: {
-        type: Number,
+        type: String,
         required: true
     },
     number: {
@@ -54,11 +54,11 @@ const schema = new Schema({
             required: true
         },
         idSaller: {
-            type: Number,
+            type: String,
             required: true
         },
         idClient: {
-            type: Number,
+            type: String,
             required: true
         },
         typeUser: {
