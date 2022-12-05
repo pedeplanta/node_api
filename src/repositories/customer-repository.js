@@ -27,3 +27,13 @@ exports.getByRoles = async(roles) => {
     return res;
 }
 
+exports.updatePassword = async(id, data) => {
+    await Customer.findByIdAndUpdate(
+        id, {
+            name: data.name,
+            email: data.email,
+            password: data.password
+        }
+    )
+}
+

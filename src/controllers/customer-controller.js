@@ -148,3 +148,18 @@ exports.getByRoles = async(req, res, next) => {
         });
     }
 }
+
+exports.updatePassword = async (req, res, next) => {
+    let id = req.params.id;
+    let body = req.body;
+    try {
+        await repository.updatePassword(id, body);
+        res.status(200).send({
+            message: 'Senha atualizada com sucesso!'
+        });
+    } catch(e) {
+        res.status(500).send({
+            message: 'Falha ao processar sua requisição'
+        });
+    }
+}
