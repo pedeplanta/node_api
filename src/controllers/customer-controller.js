@@ -31,17 +31,11 @@ exports.post = async (req, res, next) => {
             roles: [req.body.roles]
         });
 
-        emailService.send(
-            req.body.email,
-            'Bem vindo ao Node Store',
-            global.EMAIL_TMPL.replace('{0}', req.body.name))
-            .then((response) => {
-                console.log(response[0].statusCode)
-                console.log(response[0].headers)
-            })
-            .catch((error) => {
-                console.error(error)
-            });
+        // emailService.send(
+        //     req.body.email,
+        //     'Bem vindo ao PedePlanta',
+        //     global.EMAIL_TMPL.replace('{0}', req.body.name),
+        // );
 
         res.status(201).send({
             message: 'Cliente cadastrado com sucesso!'
@@ -127,10 +121,10 @@ exports.refreshToken = async (req, res, next) => {
 };
 
 
-exports.getByRoles = async(req, res, next) => {
+exports.getByRoles = async (req, res, next) => {
     let roleUser = `${req.params.roles}`;
 
-    if(roleUser === 'admin') {
+    if (roleUser === 'admin') {
         try {
             const data = await repository.getByRoles(roleUser);
             res.status(200).send(data);
@@ -157,7 +151,7 @@ exports.updatePassword = async (req, res, next) => {
         res.status(200).send({
             message: 'Senha atualizada com sucesso!'
         });
-    } catch(e) {
+    } catch (e) {
         res.status(500).send({
             message: 'Falha ao processar sua requisição'
         });

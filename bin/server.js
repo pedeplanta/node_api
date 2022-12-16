@@ -1,8 +1,8 @@
-const app = require('../src/app');
+const app = require('../app');
 const http = require('http');
 const debug = require('debug')('pedeplanta_back:server');
 
-const port = normalizePort(process.env.port || 3000);
+const port = normalizePort(process.env.port || 8000);
 app.set('port', port);
 
 const server = http.createServer(app);
