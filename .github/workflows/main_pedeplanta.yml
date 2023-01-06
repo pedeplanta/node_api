@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'pedeplanta'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DB28B30A393D4AC4AC55DBA264D5F553 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5A1FB65BA85F4B3E9200FEB36426C369 }}
           package: .
